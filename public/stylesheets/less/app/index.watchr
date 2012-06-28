@@ -1,0 +1,1 @@
+watch( 'index.less' )  {|f| system("lessc index.less > ../../style.css")}

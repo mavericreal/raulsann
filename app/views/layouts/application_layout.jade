@@ -1,0 +1,12 @@
+doctype 5
+html(lang="en")
+  head
+    title= title
+    != stylesheet_link_tag('bootstrap.min.css?1', 'MyFontsWebfontsKit.css?1', 'style.css?1', 'bootstrap-responsive.css?1')
+    != javascript_include_tag('http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', 'bootstrap.js?1', 'rails.js?1', 'application.js?1')
+  body
+    block content
+      yield
+    hr
+    footer
+      .container

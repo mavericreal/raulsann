@@ -3,7 +3,7 @@ express = require 'express'
 app.configure ->
     cwd = process.cwd()
     
-    app.set 'view engine', 'ejs'
+    app.set 'view engine', 'jade'
     app.set 'view options', complexNames: true
     app.enable 'coffee'
 

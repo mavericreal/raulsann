@@ -4,4 +4,6 @@ exports.routes = function (map) {
     // feel free to remove generic routes
     map.all(':controller/:action');
     map.all(':controller/:action/:id');
+
+    map.get('/', 'home#index');
 };
