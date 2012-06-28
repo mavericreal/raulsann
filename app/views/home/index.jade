@@ -1,18 +1,20 @@
 extends ../layouts/application_layout
 
 block append content
-  header.container
-    img#main_image(src='images/ptc1.png')
+  header
+    canvas.bg#bg_header
+    .container
+      h1 
+        | Raul San Narciso
+      p I was born in 1985, lived in Spain, Scotland, the US and traveled to visit different cultures, from Asia to South America, looking for insights about how to bring an equilibrium between our society and Nature. 
+      p I studied Computer Engineering not because I love technology on itself, but because it is a great tool I can use to reach the many.
 
-    h1 
-      | Ruby on Rails Developer
-    h4 Cocreate a game to mobilize communities all across the world.
-    h3 Live 3 months in Paraty, Brazil
-    h5 September 20th - December 20th, 2012
+
 
   section#what_is_the_call
+    canvas.bg#bg_section_1
     .container
-      h2 What is Play The Call?
+      h2 The words I use to direct my life are:
       p
         | Play The Call 
         | is a game to awaken the children of the world and unlock their inborn 
@@ -20,104 +22,3 @@ block append content
           | Super-Powers.
       p Play The Call will be presented as an online platform, using and connecting free online applications including Facebook, Twitter, Google+ and Ning to foster the collaboration between players. It will be played in the real world, integrating physical and digital space to connect and challenge people and communities around the world to play with each other, and perform real tasks that will transform our world.
 
-
-  section#main_two_requirements
-    .container
-      h2 The Main Two Requirements
-      p 
-        i.icon-ok-circle
-        | You are exceptional at what you do.
-      p 
-        i.icon-ok-circle
-        | You are a purpose driven individual committed to create a positive impact in the world.
-
-  section#three_months_in_parati
-    .container.blue
-      h2 Live 3 months from Paraty, Brazil
-      p This is a long-time position starting now. Besides, we would like to invite you to live 3 months in Paraty, Brazil. 
-      p All you need is included: accommodation, breakfast, lunch, dinner and a paradise to explore at your footsteps.
-      .row
-        .span6
-          .img_border
-            img(src='images/parati.jpeg')
-        .span6
-          .img_border
-            img(src='images/paraty2.jpeg')
-
-  section#main_location
-    .container
-      h2 Main Location
-      p The stay in Paraty is for 3 months and after that we need you stay working with Play The Call for at least one year. You can choose to live in your own state (within the US) or country. However, if you have permission to work in the US we encourage you to work from Boulder, Colorado, where you will be collaborating with 
-        != link_to('@raulsann', 'http://twitter.com/raulsann')
-        |, product manager of the game. 
-      p Boulder is a vibrant city with a community filled of Social Entrepreneurs that want to create a possitive impact in our world and enjoy getting things done!
-
-  section#the_team
-    .container
-      h2 Edgard Gouveia Jr.
-      p Visionary and founder of PlayTheCall, Edgard Gouveia Jr. is an architect specialized in bioarchitecture and intuitive technology and has a post-degree in cooperative games. 
-      p Founder of Elos Institute and Warriors Without Weapons program, he is at the tip of applied research on how to change the world.
-
-      p He is both an Ashoka Fellow and a Berkana Fellow. In addition to teaching at schools and universities around the world, Edgard’s scheduled speaking engagements in North America 2012 include Harvard University and MIT. 
-      p You will be collaborating closely with Edgard and a large network of purpose driven individuals to create a movement of good actions that will spread all accross our planet. This is a TEDx Talk by Edgard:
-      .img_border
-        <iframe width="560" height="315" src="http://www.youtube.com/embed/mEHyktixpbY?cc_load_policy=1&yt:cc=on&hl=en-us" frameborder="0" allowfullscreen></iframe>
-
-
-  section#compensation
-    .container
-      h2 Compensation
-      p This is a full time compensated job. Besides working to create a positive impact in the world through games and the possibility to live in Paraty for 3 months, you will receive a great salary depending on your experience and the things you have done in the past.
-
-  section#openings
-    .container
-      h2 Openings
-      h3 Lead Ruby on Rails Developer
-
-      p
-        i.icon-ok-circle
-        | You are an experienced web hacker and have built web applications you are proud to tell us about. 
-      p
-        i.icon-ok-circle
-        | You might have studied Computer Engineering or Computer Science OR you have been coding software for a good amount of years. 
-      p
-        i.icon-ok-circle
-        | You have experience coding on Ruby on Rails, love the web and you're interested in everything from CSS to databases.
-      p
-        i.icon-ok-circle
-        | You have experience coding on Javascript and jQuery. 
-      p
-        i.icon-ok-circle
-        | CoffeeScript, Backbone.js, HAML and SCSS are a plus.
-
-      h3 Ruby on Rails Developer
-      p
-        i.icon-ok-circle
-        | You are a web hacker and can show us some web projects you have done. Even if they are the ones you did at university.
-      p
-        i.icon-ok-circle
-        | You might have studied Computer Engineering or Computer Science OR you have been coding software for a good amount of years. 
-      p
-        i.icon-ok-circle
-        | You have used a popular web framework before, like Ruby on Rails, Sinatra or Django. 
-      p
-        i.icon-ok-circle
-        | You love the web and you're interested in everything from CSS to databases.
-      p
-        i.icon-ok-circle
-        | You have used Javascript and jQuery. 
-      p
-        i.icon-ok-circle
-        | CoffeeScript, Backbone.js, HAML and SCSS are a plus.
-
-      h3 Both openings require
-      p
-        i.icon-ok-circle
-        | You are proactive and at the same time enjoy collaborating. We are looking for people that are their own cheerleaders and enjoys adding value to the ones around them.
-      p
-        i.icon-ok-circle
-        | You are smart, curious, and enjoy getting things done.
-
-      != link_to('Apply', 'https://docs.google.com/spreadsheet/viewform?formkey=dHE5cDFJWmVZdGxMdzRqMnpyUmNmOVE6MQ', {class:'btn btn-danger'})
-
-      p.application_info Applications close on August 1st, 2012
