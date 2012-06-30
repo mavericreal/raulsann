@@ -9,10 +9,13 @@
     events: {
       'mouseenter': 'mouseenterEffect',
       'mousemove': 'mousemoveEffect',
-      'mouseout': 'mouseoutEffect'
+      'mouseout': 'mouseoutEffect',
+      'mousedown': 'mousedownEffect',
+      'mouseup': 'mouseupEffect'
     },
     initialize: function() {
       var self;
+      log('initaaa');
       self = this;
       this.mutex = false;
       this.inside = false;
@@ -23,39 +26,63 @@
       this.ctx = this.canvas.getContext("2d");
       this.height = this.canvas.height;
       this.width = this.canvas.width;
-      return this.brush = new sketchy(this.ctx, [107, 154, 253]);
+      this.sections = this.options.sections;
+      this.color = this.sections[0][1];
+      return this.brush = new sketchy(this.ctx, this.color);
     },
     mouseenterEffect: function(e) {
-      var x, y, _ref;
       this.inside = true;
-      _ref = this.getPosition(e), x = _ref[0], y = _ref[1];
-      return this.brush.strokeStart(x, y);
+      this.updatePosition(e);
+      this.updateColor();
+      return this.brush.strokeStart(this.x, this.y);
     },
     mousemoveEffect: function(e) {
-      var x, y, _ref;
-      _ref = this.getPosition(e), x = _ref[0], y = _ref[1];
+      this.updatePosition(e);
+      this.updateColor();
       if (this.inside) {
-        return this.brush.stroke(e.pageX, e.pageY);
+        return this.brush.stroke(this.x, this.y);
       } else {
         this.inside = true;
-        return this.brush.strokeStart(e.pageX, e.pageY);
+        return this.brush.strokeStart(this.x, this.y);
       }
     },
     mouseoutEffect: function(e) {
+      this.updateColor();
       return this.brush.strokeEnd();
     },
-    getPosition: function(e) {
-      var x, y;
+    mousedownEffect: function(e) {
+      this.brush.brush_pressure = 0;
+      return this.ctx.globalCompositeOperation = 'copy';
+    },
+    mouseupEffect: function(e) {
+      this.brush.brush_pressure = 2;
+      return this.ctx.globalCompositeOperation = 'source-over';
+    },
+    updatePosition: function(e) {
       if (e.pageX || e.pageY) {
-        x = e.pageX;
-        y = e.pageY;
+        this.x = e.pageX;
+        return this.y = e.pageY;
       } else {
-        x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-        y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+        this.x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+        return this.y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
       }
-      x -= this.canvas.offsetLeft;
-      y -= this.canvas.offsetTop;
-      return [x, y];
+    },
+    updateColor: function() {
+      var s, self;
+      try {
+        self = this;
+        s = _.find(this.sections, function(n) {
+          var _ref;
+          return (n['offset'][0] < (_ref = self.y) && _ref < n['offset'][1]);
+        });
+        this.color = s['color'];
+        return this.brush.color = this.color;
+      } catch (_error) {}
+    },
+    clean: function() {
+      this.brush.destroy();
+      this.ctx.clearRect(0, 0, this.width, this.height);
+      return this.brush = new sketchy(this.ctx, this.color);
     }
   });
 

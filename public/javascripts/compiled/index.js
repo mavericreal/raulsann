@@ -11,15 +11,57 @@
     height: 0,
     width: 0,
     inside: false,
-    initCanvas: function(id) {
-      return new window.CanvasBrushView({
+    initCanvas: function(id, sections) {
+      return this.canvasBrushView = new window.CanvasBrushView({
         el: $("#" + id),
-        id: id
+        id: id,
+        sections: sections
+      });
+    },
+    cleanCanvas: function() {
+      return this.canvasBrushView.clean();
+    },
+    duplicateLinks: function() {
+      return $('#sections a').each(function() {
+        var left, link, top;
+        link = $(this).clone();
+        log(link);
+        top = $(this).offset().top;
+        left = $(this).offset().left;
+        $(link).css('top', top);
+        $(link).css('left', left);
+        $(link).css('position', 'absolute');
+        $(link).addClass('absolute_link');
+        log(link);
+        log('[[[[[[[[[[[[[');
+        return $('body').append($(link));
       });
     },
     init: function() {
-      this.initCanvas("bg_header");
-      return this.initCanvas("bg_section_1");
+      var colors, i, sections_array, self;
+      self = this;
+      i = 0;
+      colors = [[0, 0, 0], [250, 250, 250], [250, 250, 250], [250, 250, 250], [250, 250, 250], [250, 250, 250], [250, 250, 250], [250, 250, 250], [0, 0, 0], [0, 0, 0]];
+      sections_array = [];
+      sections_array.push({
+        'id': $('header').attr('id'),
+        'color': colors[i],
+        'offset': [$(header).offset().top, $(header).offset().top + $(header).outerHeight()]
+      });
+      i++;
+      $('section').each(function() {
+        sections_array.push({
+          'id': $(this).attr('id'),
+          'color': colors[i],
+          'offset': [$(this).offset().top, $(this).offset().top + $(this).outerHeight()]
+        });
+        return i++;
+      });
+      this.initCanvas('bg', sections_array);
+      $('#clean').click(function() {
+        return self.cleanCanvas();
+      });
+      return this.duplicateLinks();
     }
   };
 

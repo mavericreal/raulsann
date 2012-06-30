@@ -1,24 +1,67 @@
 extends ../layouts/application_layout
 
 block append content
-  header
-    canvas.bg#bg_header
+  header#header
     .container
       h1 
-        | Raul San Narciso
-      p I was born in 1985, lived in Spain, Scotland, the US and traveled to visit different cultures, from Asia to South America, looking for insights about how to bring an equilibrium between our society and Nature. 
-      p I studied Computer Engineering not because I love technology on itself, but because it is a great tool I can use to reach the many.
+        | Hi, this is Raul San Narciso
+      p I am not much different from you.
+      p We both have dreams and skills we can use to inspire the ones we meet on our way.
+      p We are both alive and have the freedom to make the most out of every moment starting now.
+      p We might have met, but if we haven't, when we do meet, it would be great to talk about things we have in common and find ways to collaborate to help create a better society.
+      p What I care about can be easily summarized. 
+      p The following words could be a great topic of conversation for next/first time we meet.  
+  #sections
+    section#empathy
+      .container
+        h2 Empathy
+        p if our society had high levels of empathy there wouldn't be any problem in the world, because we would be very careful about our actions and the effect those actions have in other people and our planet.
+
+    section#nature
+      .container
+        h2 Nature
+        p " Human subtlety will never devise an invention more beautiful, more simple or more direct than does nature, because in her inventions nothing is lacking, and nothing is superfluous. "
+        p - Michelangelo
+    section#social_entrepreneurship
+      .container
+        h2 Social Entrepreneurship
+        p In the 60's we had the hippie movement. Right now we are in the middle of a Social Entrepreneurship movement to bring a balance in the way we reward value provided to our society. Social Entrepreneurship is all about creating a positive impact in the world and bringing abundance to those making things happen.
+    section#optimism
+      .container
+        h2 Optimism
+        p Worrying is like praying for what you don't want.
+    section#games
+      .container
+        h2 Games
+        p " Games have in common 4 traits, clear goals, rules, a feedback system and voluntary participation. "
+        p - 
+          != link_to('Jane McGonigal','http://janemcgonigal.com/')
+        p Life becomes the most entertaining fun game ever! when we learn to identify our goals in life, the rules of the society, the mentors that give us meaningful feedback and learn we have the option to do whatever we want with our own lives.
+
+
+    section#working_on
+      .container
+        .over_canvas
+          h2 What I am working on right now
+          .project
+            h3 EMOTION
+            p A game where users have to use their empathy to get to know other people in a more meaningful way.
+            != link_to('http://emotion.is','http://emotion.is')
+          .project
+            h3 PlayTheCall
+            p A game to awaken the children of the world and unlock their inborn super-powers.
+            != link_to('http://playthecall.us','http://playthecall.us')
 
 
 
-  section#what_is_the_call
-    canvas.bg#bg_section_1
-    .container
-      h2 The words I use to direct my life are:
-      p
-        | Play The Call 
-        | is a game to awaken the children of the world and unlock their inborn 
-        span.chunk
-          | Super-Powers.
-      p Play The Call will be presented as an online platform, using and connecting free online applications including Facebook, Twitter, Google+ and Ning to foster the collaboration between players. It will be played in the real world, integrating physical and digital space to connect and challenge people and communities around the world to play with each other, and perform real tasks that will transform our world.
+
+
+
+
+
+
+
+
+
+
 

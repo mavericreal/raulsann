@@ -5,64 +5,92 @@
   -webkit-border-radius: @radius;
   -moz-border-radius: @radius;
 }                            
-        
+    
 
 
 
 /**********************************************************************
 	BACKGROUND
 ***********************************************************************/
-.bg { 
+#bg { 
 	background: transparent;
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	left: 0;
 	top: 0;
-	z-index: 0; 
+	bottom:0;
+	right:0;
+	z-index: 2; 
 }
 
+
+/**********************************************************************
+	BOTTOM MENU
+***********************************************************************/
+.btn_footer{
+	position:fixed;
+	bottom:5px;
+	z-index: 10;
+	a{
+		display: block;
+	}
+	img{
+		height: 70px;
+	}
+	cursor:pointer;
+}
+
+#clean{
+	right:20px;
+	bottom:20px;
+}
+
+#blog{
+	right:160px;
+}
+#g{
+	right:260px;
+}
+#ln{
+	right:360px;
+}
+#fb{
+	right:460px;
+}
+#tw{
+	right:560px;
+}
+#arrow{
+	left:50px;
+}
 /**********************************************************************
 	GENERAL
 ***********************************************************************/
+body{
+	width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+	position:relative;
+	font-family:"Junction";
+	font-size: 22px;
+	line-height: 65px;
+	background-image: url('/images/bg-gray-3.png');
+}
+
 
 header{
 	text-align: center;
-	padding: 60px 0 85px;
+	padding: 60px 0 20px;
 	position: relative;
+	box-shadow: inset 0px -4px 5px -3px #888
 }
-
-
-// GENERAL
-section {
-	position: relative; 
-	padding:100px 0;
-	box-shadow: inset 0px 1px 3px #888;
-	box-shadow: 0px 3px 2px 0px #888;
-	background-repeat: repeat;
-	text-align: center;
-	text-shadow: 1px 1px #E6E6E6;
-}
-section, header{
-	p{
-		margin: 0 0 5px;
-		width: 850px;
-		margin-left: 15%;
-		text-align: left;
-	}
-}
-
-body{
-	font-family:"Junction";
-	font-size: 16px;
-	line-height: 32px;
-	background-image: url('/images/bg-gray-3.png');
-} 
 
 h1{
-	margin: 44px 0;
+	margin: 44px 0 60px;
 	font-family:"Jura";
-	font-size:50px;
+	font-size:55px;
 	text-shadow: 2px 4px #E6E6E6;
 }
 
@@ -97,16 +125,56 @@ h5{
 	text-shadow: 1px 2px #E6E6E6;
 }
 
-#what_is_the_call{
-	box-shadow: none;
+/**********************************************************************
+	ABSOLUTE LINK
+***********************************************************************/
+a.absolute_link{
+	positon:absolute;
+	z-index: 11;
+	font-size: 22px;
+	line-height: 22px;
+}
+/**********************************************************************
+	SECTIONS
+***********************************************************************/
+section {
+	position: relative; 
+	padding:100px 0;
+	box-shadow: inset 0px 1px 3px #888;
+	box-shadow: 0px 3px 2px 0px #888;
+	background-repeat: repeat;
+	text-align: center;
 	color:white;
-	background-image: url('/images/bg-blue-3.png');
 	text-shadow: 1px 1px #505050;
 	h2{
 		text-shadow: 1px 2px #505050;
 	}
-	.chuck{
-		font-size: 17px;
+	&:first-child{
+		box-shadow: none;
+		background-image: url('/images/bg-blue-3.png');
+
+	}
+	&:nth-child(2){
+		background-image: url('/images/bg-green-1.png');
+	}
+	&:nth-child(3){
+		background-image: url('/images/bg-green-2.png');
+	}
+	&:nth-child(4){
+		background-image: url('/images/bg-purple-5.png');
+	}
+	&:nth-child(5){
+		background-image: url('/images/bg-purple-1.png');
+	}
+	&:nth-child(6){
+		background-image: url('/images/bg-green-1.png');
+	}
+}
+section, header{
+	p{
+		width: 60%;
+		margin-left: 20%;
+		text-align: left;
 	}
 }
 
@@ -170,82 +238,13 @@ h5{
 		}
 	}
 }
-
-#main_location{
-	color:white;
-	text-shadow: 1px 1px #505050;
-	background-image: url('/images/bg-green-2.png');
-	h2{
-		text-shadow: 1px 2px #505050;
+/**********************************************************************
+	WORKING ON
+***********************************************************************/
+#working_on{
+	.over_canvas{
+		positon:absolute;
 	}
-}
-
-#the_team{
-	color:white;
-	text-shadow: 1px 1px #505050;
-	background-image: url('/images/bg-purple-5.png');
-	.row{
-		margin-top: 30px;
-	}
-	h2{
-		text-shadow: 1px 2px #505050;
-	}
-	.img_border{
-		margin: auto;
-		.rounded-corners(6px);
-		background:rgba(235, 235, 235, 0.35);
-		padding:4px;
-		width:560px;
-		height: 315px;
-		margin-top: 40px;
-	}	
-}
-
-
-#compensation{
-	color:white;
-	text-shadow: 1px 1px #505050;
-	background-image: url('/images/bg-purple-1.png');
-	h2{
-		text-shadow: 1px 2px #505050;
-	}
-}
-
-#openings{
-	h3{
-		padding-bottom: 25px;
-	}
-	p{
-		text-align: left;
-		width: 800px;
-		margin-left: 17%;
-	}
-	i{
-		margin-right: 15px;
-	}
-	.btn{
-		padding: 17px 215px;
-		font-size: 32px;
-		margin-top: 70px;
-		padding: 17px 215px;
-		font-size: 32px;
-		margin-top: 70px;
-		font-family: Jura;
-		text-transform: uppercase;
-		color:white;
-		text-decoration: none;
-	}
-	.application_info{
-		text-align: center;
-		color: #8A8A8A;
-		margin-top: 13px;
-	}
-}
-
-
-
-.chunk{
-	font-family:"Chunk";
 }
 
 footer{

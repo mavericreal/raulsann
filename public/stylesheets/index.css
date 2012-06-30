@@ -1,49 +1,78 @@
 /**********************************************************************
-	BACKGROUND    
+	BACKGROUND
 ***********************************************************************/
-.bg {
+#bg {
   background: transparent;
   width: 100%;
   height: 100%;
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+}
+/**********************************************************************
+	BOTTOM MENU
+***********************************************************************/
+.btn_footer {
+  position: fixed;
+  bottom: 5px;
+  z-index: 10;
+  cursor: pointer;
+}
+.btn_footer a {
+  display: block;
+}
+.btn_footer img {
+  height: 70px;
+}
+#clean {
+  right: 20px;
+  bottom: 20px;
+}
+#blog {
+  right: 160px;
+}
+#g {
+  right: 260px;
+}
+#ln {
+  right: 360px;
+}
+#fb {
+  right: 460px;
+}
+#tw {
+  right: 560px;
+}
+#arrow {
+  left: 50px;
 }
 /**********************************************************************
 	GENERAL
 ***********************************************************************/
-header {
-  text-align: center;
-  padding: 60px 0 85px;
-  position: relative;
-}
-section {
-  position: relative;
-  padding: 100px 0;
-  box-shadow: inset 0px 1px 3px #888;
-  box-shadow: 0px 3px 2px 0px #888;
-  background-repeat: repeat;
-  text-align: center;
-  text-shadow: 1px 1px #E6E6E6;
-}
-section p,
-header p {
-  margin: 0 0 5px;
-  width: 850px;
-  margin-left: 15%;
-  text-align: left;
-}
 body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
   font-family: "Junction";
-  font-size: 16px;
-  line-height: 32px;
+  font-size: 22px;
+  line-height: 65px;
   background-image: url('/images/bg-gray-3.png');
 }
+header {
+  text-align: center;
+  padding: 60px 0 20px;
+  position: relative;
+  box-shadow: inset 0px -4px 5px -3px #888888;
+}
 h1 {
-  margin: 44px 0;
+  margin: 44px 0 60px;
   font-family: "Jura";
-  font-size: 50px;
+  font-size: 55px;
   text-shadow: 2px 4px #E6E6E6;
 }
 h2 {
@@ -73,17 +102,55 @@ h5 {
   margin-top: 15px;
   text-shadow: 1px 2px #E6E6E6;
 }
-#what_is_the_call {
-  box-shadow: none;
+/**********************************************************************
+	ABSOLUTE LINK
+***********************************************************************/
+a.absolute_link {
+  positon: absolute;
+  z-index: 11;
+  font-size: 22px;
+  line-height: 22px;
+}
+/**********************************************************************
+	SECTIONS
+***********************************************************************/
+section {
+  position: relative;
+  padding: 100px 0;
+  box-shadow: inset 0px 1px 3px #888;
+  box-shadow: 0px 3px 2px 0px #888;
+  background-repeat: repeat;
+  text-align: center;
   color: white;
-  background-image: url('/images/bg-blue-3.png');
   text-shadow: 1px 1px #505050;
 }
-#what_is_the_call h2 {
+section h2 {
   text-shadow: 1px 2px #505050;
 }
-#what_is_the_call .chuck {
-  font-size: 17px;
+section:first-child {
+  box-shadow: none;
+  background-image: url('/images/bg-blue-3.png');
+}
+section:nth-child(2) {
+  background-image: url('/images/bg-green-1.png');
+}
+section:nth-child(3) {
+  background-image: url('/images/bg-green-2.png');
+}
+section:nth-child(4) {
+  background-image: url('/images/bg-purple-5.png');
+}
+section:nth-child(5) {
+  background-image: url('/images/bg-purple-1.png');
+}
+section:nth-child(6) {
+  background-image: url('/images/bg-green-1.png');
+}
+section p,
+header p {
+  width: 60%;
+  margin-left: 20%;
+  text-align: left;
 }
 #main_two_requirements {
   color: white;
@@ -143,74 +210,11 @@ h5 {
   -moz-border-radius: 6px;
   width: 380px;
 }
-#main_location {
-  color: white;
-  text-shadow: 1px 1px #505050;
-  background-image: url('/images/bg-green-2.png');
-}
-#main_location h2 {
-  text-shadow: 1px 2px #505050;
-}
-#the_team {
-  color: white;
-  text-shadow: 1px 1px #505050;
-  background-image: url('/images/bg-purple-5.png');
-}
-#the_team .row {
-  margin-top: 30px;
-}
-#the_team h2 {
-  text-shadow: 1px 2px #505050;
-}
-#the_team .img_border {
-  margin: auto;
-  border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  background: rgba(235, 235, 235, 0.35);
-  padding: 4px;
-  width: 560px;
-  height: 315px;
-  margin-top: 40px;
-}
-#compensation {
-  color: white;
-  text-shadow: 1px 1px #505050;
-  background-image: url('/images/bg-purple-1.png');
-}
-#compensation h2 {
-  text-shadow: 1px 2px #505050;
-}
-#openings h3 {
-  padding-bottom: 25px;
-}
-#openings p {
-  text-align: left;
-  width: 800px;
-  margin-left: 17%;
-}
-#openings i {
-  margin-right: 15px;
-}
-#openings .btn {
-  padding: 17px 215px;
-  font-size: 32px;
-  margin-top: 70px;
-  padding: 17px 215px;
-  font-size: 32px;
-  margin-top: 70px;
-  font-family: Jura;
-  text-transform: uppercase;
-  color: white;
-  text-decoration: none;
-}
-#openings .application_info {
-  text-align: center;
-  color: #8A8A8A;
-  margin-top: 13px;
-}
-.chunk {
-  font-family: "Chunk";
+/**********************************************************************
+	WORKING ON
+***********************************************************************/
+#working_on .over_canvas {
+  positon: absolute;
 }
 footer {
   text-align: left;

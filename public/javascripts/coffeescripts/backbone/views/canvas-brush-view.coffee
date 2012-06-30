@@ -9,7 +9,10 @@ window.CanvasBrushView = Backbone.View.extend(
 		'mouseenter': 'mouseenterEffect'
 		'mousemove': 'mousemoveEffect'
 		'mouseout': 'mouseoutEffect'
+		'mousedown': 'mousedownEffect'
+		'mouseup': 'mouseupEffect'
 	initialize: ->
+		log 'initaaa'
 		self = this
 		@mutex = false
 		@inside = false
@@ -20,29 +23,53 @@ window.CanvasBrushView = Backbone.View.extend(
 		@ctx = @canvas.getContext("2d")
 		@height = @canvas.height
 		@width = @canvas.width
+		@sections = @options.sections
+		@color = @sections[0][1]
 
-		@brush = new sketchy(@ctx,[107, 154, 253])
+		@brush = new sketchy(@ctx,@color)
 	mouseenterEffect: (e) ->
 		@inside = true
-		[x,y] = @getPosition(e)
-		@brush.strokeStart( x, y )
+		@updatePosition(e)
+		@updateColor()
+		@brush.strokeStart( @x, @y )
 	mousemoveEffect: (e)->
-		[x,y] = @getPosition(e)
+		@updatePosition(e)
+		@updateColor()
 		if(@inside)
-			@brush.stroke(e.pageX, e.pageY )
+			@brush.stroke(@x, @y)
 		else
 			@inside=true
-			@brush.strokeStart(e.pageX, e.pageY )
+			@brush.strokeStart(@x, @y)
 	mouseoutEffect: (e) ->
+		@updateColor()
 		@brush.strokeEnd()
-	getPosition:(e)->
+	mousedownEffect: (e) ->
+		@brush.brush_pressure = 0
+		@ctx.globalCompositeOperation = 'copy'
+	mouseupEffect:(e)->
+		@brush.brush_pressure = 2
+		@ctx.globalCompositeOperation = 'source-over'
+	updatePosition:(e)->
 		if (e.pageX || e.pageY)
-		  x = e.pageX
-		  y = e.pageY
+		  @x = e.pageX
+		  @y = e.pageY
 		else
-		  x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft 
-		  y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop
-		x -= @canvas.offsetLeft
-		y -= @canvas.offsetTop
-		return [x,y]
+		  @x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft 
+		  @y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop
+		#@x -= @$el.offset().left
+		#@y -= @$el.offset().top
+	updateColor:->
+		try
+			self = this
+			s= _.find(
+				@sections 
+				(n)->
+					n['offset'][0] < self.y < n['offset'][1]
+			)
+			@color = s['color']
+			@brush.color = @color
+	clean:->
+		@brush.destroy()
+		@ctx.clearRect(0, 0, @width, @height)
+		@brush = new sketchy(@ctx,@color)
 )

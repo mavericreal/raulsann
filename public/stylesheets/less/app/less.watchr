@@ -7,7 +7,7 @@ def build(f)
 		puts f[0]
 		puts f[2]
 		dirname = File.dirname(__FILE__)
-		system("lessc #{f[0]} > #{dirname}/../../../../#{f[1]}.css")
+		system("lessc #{f[0]} > #{dirname}/../../#{f[1]}.css")
 	rescue Exception => exc
 		puts 'error'
 		puts exc

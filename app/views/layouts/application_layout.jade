@@ -5,8 +5,30 @@ html(lang="en")
     != stylesheet_link_tag('bootstrap.min', 'MyFontsWebfontsKit', 'index', 'bootstrap-responsive')
     != javascript_include_tag('http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', 'compiled/variables', 'underscore-min', 'backbone-min', 'brushes/sketchy', 'bootstrap', 'rails', 'application', 'compiled/views/canvas-brush-view', 'compiled/index')
   body
+    canvas#bg
+    
     block content
       yield
     hr
+    
+    #clean.btn.btn_footer Clean Canvas
+    #blog.btn_footer
+      a(href='http://wowake.com')
+        img(src="/images/blog-icon.png")
+    #tw.btn_footer
+      a(href='http://twitter.com/raulsann')
+        img(src="/images/tw.png")
+    #fb.btn_footer
+      a(href='http://facebook.com/raulsann')
+        img(src="/images/fb.png")
+    #ln.btn_footer
+      a(href='http://linkedin.com/in/raulsann')
+        img(src="/images/ln.png")
+    #g.btn_footer
+      a(href='https://plus.google.com/115002321683827744257/')
+        img(src="/images/g.png")
+
+    #arrow.btn_footer
+      img(src="/images/arrow-blue.png")
     footer
       .container

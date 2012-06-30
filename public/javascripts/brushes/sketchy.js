@@ -1,7 +1,9 @@
 function sketchy( context, color)
 {
-	this.color = color
+	this.color = color;
 	this.init( context );
+	BRUSH_PRESSURE = 2;
+	this.brush_pressure = BRUSH_PRESSURE;
 }
 
 sketchy.prototype =
@@ -37,7 +39,7 @@ sketchy.prototype =
 		this.points.push( [ mouseX, mouseY ] );
 
 		this.context.lineWidth = window.BRUSH_SIZE;
-		this.context.strokeStyle = "rgba(" + this.color[0] + ", " + this.color[1] + ", " + this.color[2] + ", " + 0.05 * BRUSH_PRESSURE + ")";
+		this.context.strokeStyle = "rgba(" + this.color[0] + ", " + this.color[1] + ", " + this.color[2] + ", " + 0.05 * this.brush_pressure + ")";
 
 		this.context.beginPath();
 
