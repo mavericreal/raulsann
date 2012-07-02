@@ -36,43 +36,55 @@
       });
     },
     scrollArrowEffect: function() {
-      var self;
+      var bodyheight, self;
       self = this;
       log(self.sectionsArray);
-      return $('#arrow').click(function() {
+      bodyheight = $('body').outerHeight();
+      $('#arrow').click(function() {
         var arrowOffset, bodyTop, s, windowScroll, _i, _len, _ref, _results;
-        bodyTop = $('body').scrollTop();
-        windowScroll = bodyTop + $(window).outerHeight();
-        arrowOffset = $(this).offset().top;
-        _ref = self.sectionsArray;
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          s = _ref[_i];
-          log("ID  ==== " + s.id + " aaaaaa");
-          log("========BODY ========  " + s.offset[0] + "   ======" + bodyTop + "====== " + s.offset[1] + " \n");
-          log("========BODY ========  " + s.offset[0] + "   ======" + windowScroll + "====== " + s.offset[1] + " \n");
-          if (bodyTop <= s.offset[0] && s.offset[1] <= windowScroll) {
-            $('body').animate({
-              scrollTop: s.offset[1]
-            }, 500);
-            break;
-          } else if ((s.offset[0] <= arrowOffset && arrowOffset <= s.offset[1])) {
-            log("========ARROW========  " + s.offset[0] + "   ======" + arrowOffset + "====== " + s.offset[1]);
-            if (s.offset[0] === bodyTop) {
+        if ($(this).hasClass('arrow_rotated')) {
+          return $('body').animate({
+            scrollTop: 0
+          }, 500);
+        } else {
+          bodyTop = $('body').scrollTop();
+          windowScroll = bodyTop + $(window).outerHeight();
+          arrowOffset = $(this).offset().top;
+          _ref = self.sectionsArray;
+          _results = [];
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            s = _ref[_i];
+            if (bodyTop <= s.offset[0] && s.offset[1] <= windowScroll) {
               $('body').animate({
                 scrollTop: s.offset[1]
               }, 500);
+              break;
+            } else if ((s.offset[0] <= arrowOffset && arrowOffset <= s.offset[1])) {
+              if (s.offset[0] === bodyTop) {
+                $('body').animate({
+                  scrollTop: s.offset[1]
+                }, 500);
+              } else {
+                $('body').animate({
+                  scrollTop: s.offset[0]
+                }, 500);
+              }
+              break;
             } else {
-              $('body').animate({
-                scrollTop: s.offset[0]
-              }, 500);
+              _results.push(void 0);
             }
-            break;
-          } else {
-            _results.push(void 0);
           }
+          return _results;
         }
-        return _results;
+      });
+      return $(document).scroll(function() {
+        var scrolled;
+        scrolled = $(window).outerHeight() + $('body').scrollTop();
+        if (scrolled === bodyheight) {
+          return $('#arrow').addClass('arrow_rotated');
+        } else {
+          return $('#arrow').removeClass('arrow_rotated');
+        }
       });
     },
     init: function() {
