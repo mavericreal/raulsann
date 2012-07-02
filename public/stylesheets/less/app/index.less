@@ -7,7 +7,9 @@
 }                            
     
 
-
+.invisible{
+	display:none;
+}
 
 /**********************************************************************
 	BACKGROUND
@@ -197,6 +199,34 @@ section, header{
 #optimism{
 	p{
 		text-align:center;
+	}
+}
+
+.tweet_this{
+	height:32px;
+	width:32px;
+	background-repeat: no-repeat;
+	background-image: url('/images/tweet-purple.png');
+	display:block;
+	margin: auto;
+	span{
+		background-image: url('/images/tweet-this.png');
+		width: 121px;
+		height: 65px;
+		position: absolute;
+		top: 38px;
+		background-repeat: no-repeat;
+		left: -32px;
+		display:none;
+	}
+	&:hover{
+		background-image: url('/images/tweet.png');
+		span{
+			display: block !important;
+		}
+		.invisible{
+			display: block !important;
+		}
 	}
 }
 

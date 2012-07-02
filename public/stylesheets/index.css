@@ -1,3 +1,6 @@
+.invisible {
+  display: none;
+}
 /**********************************************************************
 	BACKGROUND
 ***********************************************************************/
@@ -167,6 +170,33 @@ header p {
 }
 #optimism p {
   text-align: center;
+}
+.tweet_this {
+  height: 32px;
+  width: 32px;
+  background-repeat: no-repeat;
+  background-image: url('/images/tweet-purple.png');
+  display: block;
+  margin: auto;
+}
+.tweet_this span {
+  background-image: url('/images/tweet-this.png');
+  width: 121px;
+  height: 65px;
+  position: absolute;
+  top: 38px;
+  background-repeat: no-repeat;
+  left: -32px;
+  display: none;
+}
+.tweet_this:hover {
+  background-image: url('/images/tweet.png');
+}
+.tweet_this:hover span {
+  display: block !important;
+}
+.tweet_this:hover .invisible {
+  display: block !important;
 }
 #main_two_requirements {
   color: white;
