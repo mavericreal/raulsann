@@ -11,6 +11,7 @@ window.CanvasManager =
 	height: 0
 	width: 0
 	inside: false
+	sectionOffsets: []
 	initCanvas: (id,sections)->
 		@canvasBrushView = new window.CanvasBrushView(
 			el:$("##{id}")
@@ -22,16 +23,36 @@ window.CanvasManager =
 	duplicateLinks:->
 		$('#sections a').each(->
 			link = $(@).clone()
-			log link
 			top = $(@).offset().top
 			left = $(@).offset().left
 			$(link).css('top',top)
 			$(link).css('left',left)
 			$(link).css('position','absolute')
 			$(link).addClass('absolute_link')
-			log link
-			log '[[[[[[[[[[[[['
 			$('body').append($(link))
+		)
+	scrollArrowEffect:->
+		self = this
+		log self.sectionsArray
+		$('#arrow').click(->
+
+			bodyTop = $('body').scrollTop()
+			windowScroll = bodyTop + $(window).outerHeight()
+			arrowOffset = $(@).offset().top
+			for s in self.sectionsArray
+				log "ID  ==== #{s.id} aaaaaa"  
+				log "========BODY ========  #{s.offset[0]}   ======#{bodyTop}====== #{s.offset[1]} \n"
+				log "========BODY ========  #{s.offset[0]}   ======#{windowScroll}====== #{s.offset[1]} \n"
+				if bodyTop <= s.offset[0]  and s.offset[1] <= windowScroll
+					$('body').animate({scrollTop:s.offset[1]},500)
+					break
+				else if s.offset[0] <= arrowOffset <= s.offset[1]
+					log "========ARROW========  #{s.offset[0]}   ======#{arrowOffset}====== #{s.offset[1]}"
+					if s.offset[0] is bodyTop
+						$('body').animate({scrollTop:s.offset[1]},500)
+					else
+						$('body').animate({scrollTop:s.offset[0]},500)
+					break
 		)
 	init: ()->
 		self = this
@@ -48,23 +69,19 @@ window.CanvasManager =
 			[0,0,0],
 			[0,0,0]
 		]
-
-		sections_array =[]
-		sections_array.push({'id':$('header').attr('id'),'color':colors[i],'offset':[$(header).offset().top,$(header).offset().top+$(header).outerHeight()]})
+		self.sectionsArray =[]
+		self.sectionsArray.push({'id':$('header').attr('id'),'color':colors[i],'offset':[$(header).offset().top,$(header).offset().top+$(header).outerHeight()]})
 		i++
 		$('section').each(->
-			sections_array.push({'id':$(@).attr('id'),'color':colors[i],'offset':[$(@).offset().top,$(@).offset().top+$(@).outerHeight()]})
+			self.sectionsArray.push({'id':$(@).attr('id'),'color':colors[i],'offset':[$(@).offset().top,$(@).offset().top+$(@).outerHeight()]})
 			i++
 		)
-		@initCanvas('bg',sections_array)
-
+		@initCanvas('bg',self.sectionsArray)
 		$('#clean').click(->
 			self.cleanCanvas()
 		)
-
 		@duplicateLinks()
-
-		
+		@scrollArrowEffect()
 
 $(document).ready(->
 	window.CanvasManager.init()

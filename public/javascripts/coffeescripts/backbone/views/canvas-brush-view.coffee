@@ -12,7 +12,6 @@ window.CanvasBrushView = Backbone.View.extend(
 		'mousedown': 'mousedownEffect'
 		'mouseup': 'mouseupEffect'
 	initialize: ->
-		log 'initaaa'
 		self = this
 		@mutex = false
 		@inside = false

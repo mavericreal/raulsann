@@ -11,6 +11,7 @@
     height: 0,
     width: 0,
     inside: false,
+    sectionOffsets: [],
     initCanvas: function(id, sections) {
       return this.canvasBrushView = new window.CanvasBrushView({
         el: $("#" + id),
@@ -25,43 +26,81 @@
       return $('#sections a').each(function() {
         var left, link, top;
         link = $(this).clone();
-        log(link);
         top = $(this).offset().top;
         left = $(this).offset().left;
         $(link).css('top', top);
         $(link).css('left', left);
         $(link).css('position', 'absolute');
         $(link).addClass('absolute_link');
-        log(link);
-        log('[[[[[[[[[[[[[');
         return $('body').append($(link));
       });
     },
+    scrollArrowEffect: function() {
+      var self;
+      self = this;
+      log(self.sectionsArray);
+      return $('#arrow').click(function() {
+        var arrowOffset, bodyTop, s, windowScroll, _i, _len, _ref, _results;
+        bodyTop = $('body').scrollTop();
+        windowScroll = bodyTop + $(window).outerHeight();
+        arrowOffset = $(this).offset().top;
+        _ref = self.sectionsArray;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          s = _ref[_i];
+          log("ID  ==== " + s.id + " aaaaaa");
+          log("========BODY ========  " + s.offset[0] + "   ======" + bodyTop + "====== " + s.offset[1] + " \n");
+          log("========BODY ========  " + s.offset[0] + "   ======" + windowScroll + "====== " + s.offset[1] + " \n");
+          if (bodyTop <= s.offset[0] && s.offset[1] <= windowScroll) {
+            $('body').animate({
+              scrollTop: s.offset[1]
+            }, 500);
+            break;
+          } else if ((s.offset[0] <= arrowOffset && arrowOffset <= s.offset[1])) {
+            log("========ARROW========  " + s.offset[0] + "   ======" + arrowOffset + "====== " + s.offset[1]);
+            if (s.offset[0] === bodyTop) {
+              $('body').animate({
+                scrollTop: s.offset[1]
+              }, 500);
+            } else {
+              $('body').animate({
+                scrollTop: s.offset[0]
+              }, 500);
+            }
+            break;
+          } else {
+            _results.push(void 0);
+          }
+        }
+        return _results;
+      });
+    },
     init: function() {
-      var colors, i, sections_array, self;
+      var colors, i, self;
       self = this;
       i = 0;
       colors = [[0, 0, 0], [250, 250, 250], [250, 250, 250], [250, 250, 250], [250, 250, 250], [250, 250, 250], [250, 250, 250], [250, 250, 250], [0, 0, 0], [0, 0, 0]];
-      sections_array = [];
-      sections_array.push({
+      self.sectionsArray = [];
+      self.sectionsArray.push({
         'id': $('header').attr('id'),
         'color': colors[i],
         'offset': [$(header).offset().top, $(header).offset().top + $(header).outerHeight()]
       });
       i++;
       $('section').each(function() {
-        sections_array.push({
+        self.sectionsArray.push({
           'id': $(this).attr('id'),
           'color': colors[i],
           'offset': [$(this).offset().top, $(this).offset().top + $(this).outerHeight()]
         });
         return i++;
       });
-      this.initCanvas('bg', sections_array);
+      this.initCanvas('bg', self.sectionsArray);
       $('#clean').click(function() {
         return self.cleanCanvas();
       });
-      return this.duplicateLinks();
+      this.duplicateLinks();
+      return this.scrollArrowEffect();
     }
   };
 

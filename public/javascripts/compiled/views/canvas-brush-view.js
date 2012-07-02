@@ -15,7 +15,6 @@
     },
     initialize: function() {
       var self;
-      log('initaaa');
       self = this;
       this.mutex = false;
       this.inside = false;

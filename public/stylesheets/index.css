@@ -47,7 +47,17 @@
   right: 560px;
 }
 #arrow {
+  background-image: url("/images/arrow-blue.png");
+  background-size: 70px;
   left: 50px;
+  width: 70px;
+  height: 70px;
+}
+#arrow:hover {
+  background-image: url("/images/arrow-gray.png");
+}
+.btn_footer:active {
+  box-shadow: inset 1px 1px 3px 1px #CCC;
 }
 /**********************************************************************
 	GENERAL
