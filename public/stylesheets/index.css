@@ -165,6 +165,9 @@ header p {
   margin-left: 20%;
   text-align: left;
 }
+#optimism p {
+  text-align: center;
+}
 #main_two_requirements {
   color: white;
   text-shadow: 1px 1px #505050;
