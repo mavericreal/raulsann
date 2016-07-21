@@ -1,6 +1,8 @@
 raulsann
 ========
 
+[![Join the chat at https://gitter.im/raulsann/raulsann](https://badges.gitter.im/raulsann/raulsann.svg)](https://gitter.im/raulsann/raulsann?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 
 This is a simple Website created with [Railway.js](http://railwayjs.com/).
 
